@@ -1,0 +1,12 @@
+Source: hamonikr-kakaotalk
+Section: misc
+Priority: optional
+Maintainer: HamoniKR <pkg@hamonikr.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 4.1.4
+
+Package: hamonikr-kakaotalk
+Architecture: all
+Depends: wine, wine32, winetricks, winbind, fonts-nanum, fonts-nanum-coding, fonts-nanum-eco, fonts-nanum-extra
+Description: Install KakaoTalk
+ 카카오톡 설치

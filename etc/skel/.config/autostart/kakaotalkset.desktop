@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=kakaotalkset
+Comment=if not user... use this script
+Exec=/usr/local/bin/kakaotalkset
+Terminal=false
+Type=Application

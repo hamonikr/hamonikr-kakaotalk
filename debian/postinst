@@ -1,0 +1,47 @@
+#!/bin/bash
+
+    if [ ! -z $SUDO_USER ]; then
+        userid=$SUDO_USER
+    elif [ ! -z $USER ]; then
+        userid=$USER
+    else
+        #user가 없을 때 처음부팅시 /etc/skel/.config/autostart/kakaotalkset.desktop 파일 홈에 복사 후 실행
+        exit 0
+    fi
+    
+    hostname=`hostname -f`
+    cut=${hostname:0:15}
+    cut=${cut^^}
+
+    # kakaotalk 파일 압축 풀기 (그냥 빌드시 특정파일이 변경되어 카톡이 실행 안됨)
+    echo "extract kakao.tar.gz"
+    tar -xf /opt/kakaotalk/Kakao.tar.gz -C /opt/kakaotalk/.wine/drive_c/Program\ Files/
+    
+    # user변환
+    echo "change user"
+    sed -i "s/hamonikrwine-VirtualBox/$hostname/g" /opt/kakaotalk/.wine/system.reg
+    sed -i "s/HAMONIKRWINE-VI/$cut15/g" /opt/kakaotalk/.wine/system.reg
+    sed -i "s/hamonikr-wine/$userid/g" /opt/kakaotalk/.wine/system.reg
+    sed -i "s/hamonikr-wine/$userid/g" /opt/kakaotalk/.wine/user.reg
+    sed -i "s/hamonikr-wine/$userid/g" /opt/kakaotalk/.wine/userdef.reg
+    sed -i "s/hamonikr-wine/$userid/g" /usr/share/applications/kakaotalk.desktop
+    
+    if [ ${userid} != 'hamonikr-wine' ]; then
+		# 폴더user이름 변환
+		echo "change folder user"
+		sudo mv /opt/kakaotalk/.wine/drive_c/users/hamonikr-wine /opt/kakaotalk/.wine/drive_c/users/$userid
+    fi
+
+    #home 폴더 이동, 권한 설정
+    echo "move home, change chown"
+    cp -r /opt/kakaotalk/.wine /home/$userid/
+    sudo chown -R $userid:$userid /home/$userid/.wine
+    
+    # 불필요한 파일 삭제
+    echo "delete"
+    sudo rm -rf /opt/kakaotalk
+    sudo rm /etc/skel/.config/autostart/kakaotalkset.desktop
+
+	exit 0
+
+
