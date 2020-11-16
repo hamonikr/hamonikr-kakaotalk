@@ -1,0 +1,31 @@
+#!/bin/bash
+    if [ ! -z $SUDO_USER ]; then
+        userid=$SUDO_USER
+    elif [ ! -z $USER ]; then
+        userid=$USER
+    else
+        #user가 없을 때 처음부팅시 /etc/skel/.config/autostart/kakaotalkset.desktop 파일 홈에 복사 후 실행
+        exit 0
+    fi
+    # i386설정
+        dpkg --add-architecture i386
+        
+    # win10 설정으로 ~/.wine 생성
+        winetricks win10
+
+    # 기본 폰트 나눔고딕 폰트 적용
+        sed -i -e "s:\"MS Shell Dlg\"=.*:\"MS Shell Dlg\"=\"NanumGothic\":g"\
+               -e "s:\"MS Shell Dlg 2\"=.*:\"MS Shell Dlg 2\"=\"NanumGothic\":g"  ~/.wine/system.reg
+
+    # 님프 키보드 중복 입력 Fix 레지스트리 등록(tmp 경로 재부팅시 자동삭제)
+        regedit /opt/kakaotalk-keybugfix.reg
+        rm -rf /opt/kakaotalk-keybugfix.reg
+
+    # 카카오톡 다운로드(tmp 경로 재부팅시 자동삭제)
+        wget http://app.pc.kakao.com/talk/win32/KakaoTalk_Setup.exe -P /tmp
+        wine /tmp/KakaoTalk_Setup.exe
+        
+    # 설치후 desktop 파일 제거
+		sudo rm -rf /usr/share/applications/hamonikr-kakaotalk.desktop
+        
+	exit 0

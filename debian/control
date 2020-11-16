@@ -7,6 +7,6 @@ Standards-Version: 4.1.4
 
 Package: hamonikr-kakaotalk
 Architecture: all
-Depends: wine, wine32, winetricks, winbind, fonts-nanum, fonts-nanum-coding, fonts-nanum-eco, fonts-nanum-extra
+Depends: wine, wine32, winetricks, winbind, fonts-nanum, fonts-nanum-eco, fonts-nanum-coding, fonts-nanum-extra
 Description: Install KakaoTalk
  카카오톡 설치

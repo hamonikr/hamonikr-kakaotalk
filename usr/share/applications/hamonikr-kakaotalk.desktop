@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=KakaoTalk Install
+Name[ko]=카카오톡 설치
+Exec=/usr/local/bin/hamonikr-kakaotalk
+Terminal=true
+Icon=freeplane
+Type=Application
+MimeType=application/x-freeplane;
+Comment=KakaoTalk Install support
+Comment[ko]=하모니카 리눅스에서 카카오톡을 설치를 도와줍니다.
