@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=KakaoTalk Install
 Name[ko]=카카오톡 설치
-Exec=/usr/local/bin/hamonikr-kakaotalk
+Exec=/usr/bin/hamonikr-kakaotalk
 Terminal=true
 Icon=freeplane
 Type=Application
