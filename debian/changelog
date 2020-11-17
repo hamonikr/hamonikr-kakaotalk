@@ -1,3 +1,10 @@
+hamonikr-kakaotalk (1.0.1) jin; urgency=medium
+
+  * Added desktop icon
+  * Added delete rule in postinst file
+
+ -- HamoniKR <pkg@hamonikr.org>  Tue, 17 Nov 2020 17:50:06 +0900
+
 hamonikr-kakaotalk (1.0.0) jin; urgency=medium
 
   * hamonikr-kakaotalk release

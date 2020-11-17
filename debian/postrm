@@ -10,7 +10,16 @@
     fi
     # postinst에서 파일이동 등으로 지워지지 않은 파일 삭제
     sudo rm -rf /home/$userid/.wine
-    sudo rm /usr/share/applications/kakaotalk.desktop
+    sudo rm -rf /home/$userid/.local/share/applications/wine
+    
+    if [ -f /home/$userid/Desktop ]; then
+        sudo rm /home/$userid/Desktop/카카오톡.desktop
+    elif [ -f /home/$userid/바탕화면 ]; then
+        sudo rm /home/$userid/바탕화면/카카오톡.desktop
+    else
+        echo "not found 카카오톡.desktop"
+    fi
+
 	exit 0
 
 
